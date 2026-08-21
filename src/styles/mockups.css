@@ -1127,6 +1127,43 @@
   }
 }
 
+/* ---- Narrow containers: crop to one panel ----------------------------
+   Below 700px the panel grids above collapse to a single column, so the
+   desktop composition turns into a long stacked list — 1200px+ tall, which no
+   height cap can show in full. It stops reading as software and reads as a
+   cramped card list.
+
+   So crop instead of squash: show one panel at full readable width. One
+   legible panel says more about the product than five squashed ones. The
+   threshold matches the grid-collapse breakpoint deliberately — cropping
+   starts exactly where the composition stops working.
+   -------------------------------------------------------------------- */
+@container (max-width: 700px) {
+  /* Keep the first block only. Strict direct-child chains, deliberately: .pg
+     and .prow are general-purpose row classes reused for button rows deeper in
+     a panel, so a descendant selector here would also strip "Generate",
+     "Regenerate" and "Turn into" out of the panel being kept. */
+  .app__pane > * ~ *,
+  .app__pane > .pg > * ~ *,
+  .app__pane > .pg > .pstack > * ~ *,
+  .app__pane > .prow > * ~ * {
+    display: none;
+  }
+}
+
+/* Phone widths: the rail is 46px of unlabelled icons carrying no meaning, so
+   give its width to the panel. The window chrome is what still reads as
+   "application" once the rail is gone. */
+@container (max-width: 520px) {
+  .app__rail {
+    display: none;
+  }
+
+  .app__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @container (max-width: 380px) {
   .app {
     font-size: 12px;
