@@ -2,7 +2,6 @@ import Icon from './ui/Icon';
 import Reveal from './ui/Reveal';
 import Logo from './ui/Logo';
 import { ctas } from '../data/site';
-import { billing } from '../data/pricing';
 import './FinalCta.css';
 
 /** Closing CTA. Full-bleed navy, oversized type, the wordmark as the anchor. */
@@ -37,8 +36,6 @@ export default function FinalCta() {
               {ctas.talk.label}
             </a>
           </div>
-
-          <p className="cta__f">{billing.trial.line}</p>
         </Reveal>
       </div>
     </section>

@@ -86,24 +86,14 @@
 
 /* ---- Legal ----------------------------------------------------------- */
 .ft__bottom {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
   padding-top: var(--s-5);
 }
 
-.ft__c,
-.ft__note {
+.ft__c {
   font-size: var(--t-xs);
   color: var(--text-4);
   line-height: 1.6;
   margin: 0;
-}
-
-.ft__note {
-  max-width: 34rem;
-  text-align: right;
 }
 
 @media (max-width: 1024px) {
@@ -132,10 +122,6 @@
   .ft__bottom {
     flex-direction: column;
     gap: 0.6rem;
-  }
-
-  .ft__note {
-    text-align: left;
   }
 }
 

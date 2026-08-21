@@ -55,10 +55,6 @@ export default function Footer() {
           <p className="ft__c">
             © {year} {site.brand}. All rights reserved.
           </p>
-          <p className="ft__note">
-            Wytlabs AI is built on the Blaze AI marketing platform. All other product names and
-            logos are trademarks of their respective owners.
-          </p>
         </div>
       </div>
     </footer>

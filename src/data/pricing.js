@@ -127,6 +127,6 @@ export const plans = [
       'Onboarding and team training',
       'Dedicated Wytlabs account team',
     ],
-    cta: { label: 'Talk to Wytlabs', href: '#contact' },
+    cta: { label: 'Talk to Wytlabs', href: '/contact' },
   },
 ];

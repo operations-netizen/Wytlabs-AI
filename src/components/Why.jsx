@@ -1,13 +1,12 @@
 import Icon from './ui/Icon';
 import Reveal from './ui/Reveal';
 import { why } from '../data/content';
-import { ctas, credentials } from '../data/site';
-import Logo from './ui/Logo';
+import { ctas } from '../data/site';
 import './Why.css';
 
 /**
  * The Wytlabs differentiator. Four pillars as a numbered editorial grid on a
- * dark ground, closing with the real partner credentials.
+ * dark ground.
  */
 export default function Why() {
   return (
@@ -46,16 +45,6 @@ export default function Why() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal className="why__foot">
-          <Logo variant="light" height={16} />
-          <span className="why__fdiv" aria-hidden="true" />
-          <ul className="why__creds">
-            {credentials.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
-        </Reveal>
       </div>
     </section>
   );

@@ -73,12 +73,6 @@
   border-color: var(--white);
 }
 
-.cta__f {
-  font-size: var(--t-xs);
-  color: var(--text-4);
-  margin: 0;
-}
-
 @media (max-width: 560px) {
   .cta__b {
     width: 100%;

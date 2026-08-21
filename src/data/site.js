@@ -27,7 +27,7 @@ export const navLinks = [
 export const ctas = {
   primary: { label: 'Get Started', href: '#pricing' },
   secondary: { label: 'Explore Features', href: '#features' },
-  talk: { label: 'Talk to Wytlabs', href: '#contact' },
+  talk: { label: 'Talk to Wytlabs', href: '/contact' },
 };
 
 /**
@@ -55,13 +55,6 @@ export const partners = [
   { src: '/brand/partners/logo2.png', alt: 'Meta Business Partners', w: 287, h: 82 },
   { src: '/brand/partners/logo3.png', alt: 'Amazon Ads Verified Partner', w: 287, h: 82 },
 ];
-
-/**
- * The same credentials as plain names, for dark surfaces where the white-backed
- * badge artwork cannot be used. Derived from `partners` so the two can never
- * drift apart.
- */
-export const credentials = partners.map((p) => p.alt);
 
 export const footer = {
   blurb:

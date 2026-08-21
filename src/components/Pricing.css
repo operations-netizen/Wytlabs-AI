@@ -82,20 +82,6 @@
   white-space: nowrap;
 }
 
-.pr__trial {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-left: auto;
-  font-size: var(--t-xs);
-  color: var(--text-3);
-}
-
-.pr__trial svg {
-  color: #0e8f6f;
-  flex: none;
-}
-
 /* ======================================================================
    Recommended plan — the dominant panel.
    ====================================================================== */
@@ -400,14 +386,6 @@
 }
 
 
-
-
-
-
-
-
-
-
 /* ---- Responsive ------------------------------------------------------- */
 @media (max-width: 1080px) {
   .pr__hero {
@@ -438,11 +416,6 @@
     grid-column: 1 / -1;
     border-right: 0;
     border-top: 1px solid var(--rule);
-  }
-
-  .pr__trial {
-    margin-left: 0;
-    width: 100%;
   }
 }
 

@@ -1,0 +1,300 @@
+/* ==========================================================================
+   CONTACT
+   --------------------------------------------------------------------------
+   Same two-surface logic as the product page: a dark band states the ask, the
+   light surface below carries the work. The form sits on the light side
+   because that is where the page expects the visitor to act.
+   ========================================================================== */
+
+.ct {
+  display: block;
+}
+
+/* ---- Dark band --------------------------------------------------------- */
+.ct__top {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--grad-hero);
+  padding-top: clamp(8rem, 15vh, 11rem);
+  padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.ct__mesh {
+  opacity: 0.5;
+}
+
+.ct__aura {
+  width: 46rem;
+  height: 26rem;
+  top: -12rem;
+  right: -10rem;
+  background: rgba(22, 44, 185, 0.45);
+}
+
+.ct__topin {
+  position: relative;
+  z-index: 1;
+}
+
+.ct__eyebrow {
+  color: var(--brand-300);
+}
+
+.ct__h1 {
+  margin: var(--s-5) 0 0;
+  font-size: clamp(2.125rem, 2.4vw + 1rem, 3.25rem); /* 34 → 52 */
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-display);
+  line-height: 1.06;
+  max-width: 22ch;
+}
+
+.ct__lede {
+  margin: var(--s-5) 0 0;
+  font-size: var(--t-body);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  max-width: 56ch;
+}
+
+/* ---- Light body -------------------------------------------------------- */
+.ct__body {
+  background: var(--bg-alt);
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+
+.ct__grid {
+  display: grid;
+  /* The form leads; the reassurance column is secondary and narrower. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+/* ---- Form panel -------------------------------------------------------- */
+.ct__panel {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-4);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: var(--e-3);
+}
+
+.ct__rows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.ct__f {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.ct__f--wide {
+  grid-column: 1 / -1;
+}
+
+.ct__l {
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.ct__opt {
+  font-weight: var(--fw-semi);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-4);
+}
+
+.ct__in {
+  width: 100%;
+  font: inherit;
+  font-size: var(--t-sm);
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-1);
+  padding: 0.7rem 0.85rem;
+  transition: border-color var(--d-2) var(--ease), background var(--d-2) var(--ease),
+    box-shadow var(--d-2) var(--ease);
+}
+
+.ct__in::placeholder {
+  color: var(--text-4);
+}
+
+.ct__in:hover {
+  border-color: var(--rule-strong);
+}
+
+.ct__in:focus-visible {
+  outline: none;
+  background: var(--bg);
+  border-color: var(--brand-700);
+  /* A ring rather than a default outline, so focus reads as part of the field. */
+  box-shadow: 0 0 0 3px rgba(22, 44, 185, 0.16);
+}
+
+/* Native arrow, but the control still matches the text inputs. */
+.ct__sel {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-3) 50%),
+    linear-gradient(135deg, var(--text-3) 50%, transparent 50%);
+  background-position: calc(100% - 1.05rem) 55%, calc(100% - 0.75rem) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
+.ct__ta {
+  resize: vertical;
+  min-height: 7rem;
+  line-height: var(--lh-loose);
+}
+
+.ct__act {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+  margin-top: clamp(1.25rem, 2.4vw, 1.85rem);
+  padding-top: clamp(1.25rem, 2.4vw, 1.85rem);
+  border-top: 1px solid var(--rule);
+}
+
+.ct__fine {
+  font-size: var(--t-xs);
+  color: var(--text-3);
+}
+
+/* ---- Sent state -------------------------------------------------------- */
+.ct__done {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-4);
+  padding-block: clamp(1rem, 2vw, 2rem);
+}
+
+.ct__donei {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-2);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-wash-rule);
+  color: var(--accent-text);
+}
+
+.ct__doneh {
+  margin: 0;
+  font-size: var(--t-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-head);
+}
+
+.ct__donep {
+  margin: 0;
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  max-width: 52ch;
+}
+
+/* ---- Side column ------------------------------------------------------- */
+.ct__sideh {
+  margin: 0 0 var(--s-5);
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.ct__steps {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.ct__steps li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  padding-block: var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+.ct__stepi {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-1);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-wash-rule);
+  color: var(--accent-text);
+}
+
+.ct__stept {
+  display: block;
+  font-size: var(--t-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-head);
+}
+
+.ct__stepb {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--t-xs);
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.ct__alt {
+  margin: var(--s-5) 0 0;
+  font-size: var(--t-xs);
+  color: var(--text-3);
+}
+
+.ct__mail {
+  color: var(--accent-text);
+  font-weight: var(--fw-semi);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.ct__mail:hover {
+  color: var(--brand-700);
+}
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .ct__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Reassurance reads better above the form once it is full width. */
+  .ct__side {
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .ct__rows {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ct__act .btn {
+    width: 100%;
+  }
+}

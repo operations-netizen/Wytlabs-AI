@@ -50,10 +50,6 @@ export default function Pricing() {
               Indicative pricing
             </span>
           )}
-          <p className="pr__trial">
-            <Icon name="check" size={14} strokeWidth={2.8} />
-            {billing.trial.line}
-          </p>
         </div>
 
         {/* Recommended plan: the dominant panel. */}
