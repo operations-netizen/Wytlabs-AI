@@ -59,47 +59,99 @@
 
 .feat__head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* The title column is sized to the title's own measure rather than to a
+     fraction of the row, so the gutter rule sits just past the last word
+     instead of leaving a few hundred px of dead space mid-row. */
+  grid-template-columns: minmax(0, clamp(17rem, 31vw, 30rem)) minmax(0, 1fr);
   gap: clamp(1.25rem, 3vw, 3.5rem) clamp(1.5rem, 4vw, 4rem);
-  align-items: end;
+  /* Top-aligned, so the title and the lede start on the same line. Bottom
+     alignment left the two blocks related only by their last lines, which is
+     what made the space between them read as a void rather than a gutter. */
+  align-items: start;
   margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
-.feat__headl .feat__t {
-  margin-bottom: 0;
-  max-width: 20ch;
+.feat__headtop {
+  grid-column: 1 / -1;
+  margin-bottom: calc(-1 * clamp(0.5rem, 1.4vw, 1.4rem));
 }
 
+/* This is the section's opening statement, so it carries more weight than the
+   h3 used in the narrower side-by-side layouts: 26 -> 40px. At 32px in a
+   column this wide it under-filled the measure and left the line ragged. */
+.feat__b--full .feat__t {
+  font-size: clamp(1.625rem, 1.45vw + 1rem, 2.5rem);
+  line-height: 1.1;
+  margin-bottom: 0;
+  max-width: 17ch;
+}
+
+/* A hairline turns the gap into a deliberate gutter. It fades out downward so
+   it reads as a typographic rule rather than a table border. */
 .feat__headr {
   display: grid;
   gap: var(--s-5);
+  position: relative;
+  padding-left: clamp(1.25rem, 2.4vw, 2.5rem);
+}
+
+.feat__headr::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  bottom: 0.35em;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    var(--rule-strong) 0%,
+    var(--rule) 45%,
+    transparent 100%
+  );
+}
+
+.feat__headr .feat__d {
+  max-width: 46ch;
 }
 
 /* Benefits span the full width beneath the head, so the short left column is
    never left hanging beside a tall right one. */
+/* Read as a specification strip rather than a sales checklist: hairlines
+   between the columns, one flush left edge, and type big enough to be read
+   rather than scanned. */
 .feat__ptsrow {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.75rem clamp(1.25rem, 2.5vw, 2.5rem);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--rule);
+  gap: 0;
+  padding-top: clamp(1.5rem, 2.2vw, 2.25rem);
+  border-top: 1px solid var(--rule-strong);
   margin: 0;
 }
 
 .feat__ptsrow li {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
-  gap: 0.7rem;
+  grid-template-columns: 15px minmax(0, 1fr);
+  gap: 0.65rem;
   align-items: start;
-  font-size: var(--t-xs);
-  line-height: 1.5;
+  font-size: var(--t-sm);
+  line-height: 1.45;
   color: var(--text-2);
+  padding-inline: clamp(1rem, 1.9vw, 1.75rem);
+  border-left: 1px solid var(--rule);
+}
+
+/* The first column sits flush with the title above it, so the block keeps a
+   single left edge instead of starting with a stray divider. */
+.feat__ptsrow li:first-child {
+  padding-inline-start: 0;
+  border-left: 0;
 }
 
 .feat__ptsrow svg {
-  margin-top: 3px;
+  margin-top: 4px;
   color: var(--accent-text);
+  opacity: 0.85;
 }
 
 .feat__wide {
@@ -163,7 +215,20 @@
 .feat__stage {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
+  /* Cap the interface, not the stage. Left unbounded this frame ran to
+     1064x753 — the largest on the page, taller than the full-width block
+     above it and dominating a laptop viewport. Fixing the frame's track and
+     giving the remainder to the labels holds it at 800x680 from 1180px up,
+     just above the side-by-side blocks (746px), while the row still fills the
+     container: capping the whole stage instead left ~190px of dead space
+     beyond the labels.
+
+     The callouts stay compact and centred against the interface. Stretching
+     them to fill 680px spread three rows ~200px apart, which read as
+     disconnected rather than anchored, and widening the column to 1fr left
+     the labels lost inside 500px rules. Trailing space at the right mirrors
+     the header above, where the lede also stops short of the edge. */
+  grid-template-columns: minmax(0, 50rem) minmax(0, 21rem);
   gap: clamp(1.5rem, 3vw, 2.5rem);
   align-items: center;
 }
@@ -242,10 +307,37 @@
     max-width: 40rem;
   }
 
+  /* Four columns across a 700-1024px row leaves each item ~150px, so every
+     line wraps three times. Two columns keeps the measure readable. */
+  .feat__ptsrow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  /* First of each row is flush, so both rows share the block's left edge. */
+  .feat__ptsrow li:nth-child(odd) {
+    padding-inline-start: 0;
+    border-left: 0;
+  }
+
   .feat__head {
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: var(--s-5);
+  }
+
+  /* Stacked: the gutter rule divides nothing, so it would just be a stray
+     line to the left of the lede. */
+  .feat__headr {
+    padding-left: 0;
+  }
+
+  .feat__headr::before {
+    content: none;
+  }
+
+  .feat__headtop {
+    margin-bottom: 0;
   }
 
   .feat__stage {
@@ -268,6 +360,14 @@
 @media (max-width: 700px) {
   .feat__ptsrow {
     grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* One column: vertical dividers separate nothing and their indent pushed
+     every item after the first out of alignment with the title above. */
+  .feat__ptsrow li {
+    padding-inline: 0;
+    border-left: 0;
   }
 
   .feat__labels {

@@ -50,11 +50,15 @@ export default function Features() {
               {f.layout === 'full' && (
                 <>
                   <Reveal className="feat__head">
+                    {/* The eyebrow gets its own row so the title and the lede
+                        share a grid row and therefore start on the same line.
+                        Nested inside the left column it pushed the title down
+                        while the lede stayed at the top of the row. */}
+                    <p className="eyebrow feat__eyebrow feat__headtop">
+                      <span className="eyebrow__idx">{f.n}</span>
+                      {f.eyebrow}
+                    </p>
                     <div className="feat__headl">
-                      <p className="eyebrow feat__eyebrow">
-                        <span className="eyebrow__idx">{f.n}</span>
-                        {f.eyebrow}
-                      </p>
                       <h3 className="feat__t">{f.title}</h3>
                     </div>
                     <div className="feat__headr">
@@ -63,7 +67,7 @@ export default function Features() {
                     <ul className="feat__ptsrow">
                       {f.points.map((p) => (
                         <li key={p}>
-                          <Icon name="check" size={16} strokeWidth={2.8} />
+                          <Icon name="check" size={14} strokeWidth={2.2} />
                           <span>{p}</span>
                         </li>
                       ))}
