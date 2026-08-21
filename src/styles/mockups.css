@@ -1041,6 +1041,27 @@
   background: linear-gradient(180deg, #92a8fb, rgba(77, 182, 249, 0.3));
 }
 
+/* ---- Height cap ------------------------------------------------------
+   A mockup must never be taller than the screen. These get TALLER as the
+   container narrows, not shorter, because the panel grids below collapse to a
+   single column — so a 1280x720 laptop ends up scrolling to see one
+   illustration, which defeats the point of showing the product at a glance.
+
+   Cap the frame and fade the cut edge: the same treatment .hero__frame
+   already uses, so a clipped mockup reads as a window onto a larger
+   application rather than as a truncation. On roomy screens the cap is above
+   the natural height and nothing is clipped at all.
+
+   .hero__frame is excluded because it sets its own tighter cap against the
+   fold, and :has() specificity would otherwise override it.
+   -------------------------------------------------------------------- */
+.frame:has(> .app):not(.hero__frame) {
+  max-height: 78svh;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
+}
+
 /* ---- Container-query adaptation ------------------------------------- */
 @container (max-width: 880px) {
   .app__body {
