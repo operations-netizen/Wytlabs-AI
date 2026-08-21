@@ -1,0 +1,178 @@
+.faq {
+  background: var(--bg);
+}
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.faq__aside {
+  position: sticky;
+  top: 120px;
+  display: grid;
+  justify-items: start;
+  gap: var(--s-4);
+}
+
+.faq__h {
+  font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+  font-weight: var(--fw-bold);
+  letterspacing: var(--tr-display);
+  letter-spacing: var(--tr-display);
+  margin: 0;
+}
+
+.faq__l {
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0 0 var(--s-2);
+  max-width: 26rem;
+}
+
+/* ---- Accordion ------------------------------------------------------- */
+.faq__list {
+  border-top: 1px solid var(--rule);
+}
+
+.faq__i {
+  border-bottom: 1px solid var(--rule);
+  transition: background var(--d-2) var(--ease);
+}
+
+.faq__i.on {
+  background: var(--bg-alt);
+}
+
+.faq__qh {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+}
+
+.faq__q {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  min-height: 68px;
+  padding: 1.15rem clamp(0.75rem, 1.5vw, 1.25rem) 1.15rem 0;
+  text-align: left;
+  transition: padding-left var(--d-2) var(--ease);
+}
+
+.faq__i.on .faq__q,
+.faq__q:hover {
+  padding-left: 0.5rem;
+}
+
+.faq__qn {
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--d-2) var(--ease);
+}
+
+.faq__i.on .faq__qn {
+  color: var(--accent-text);
+}
+
+.faq__qt {
+  font-size: var(--t-body);
+  font-weight: var(--fw-semi);
+  letter-spacing: -0.012em;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.faq__qi {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-1);
+  color: var(--text-3);
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease),
+    border-color var(--d-2) var(--ease);
+}
+
+/* Rotate the glyph, not the bordered box — rotating the box reads as a diamond. */
+.faq__qi svg {
+  transition: transform var(--d-3) var(--ease);
+}
+
+.faq__i.on .faq__qi {
+  background: var(--brand-700);
+  border-color: transparent;
+  color: var(--white);
+}
+
+.faq__i.on .faq__qi svg {
+  transform: rotate(135deg);
+}
+
+.faq__a {
+  padding: 0 clamp(0.75rem, 1.5vw, 1.25rem) 1.35rem 3.35rem;
+  animation: faq-in 300ms var(--ease) both;
+}
+
+.faq__a p {
+  max-width: 68ch;
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+}
+
+@keyframes faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .faq__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .faq__aside {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .faq__q {
+    grid-template-columns: minmax(0, 1fr) 26px;
+    padding-right: 0;
+  }
+
+  .faq__qn {
+    display: none;
+  }
+
+  .faq__a {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__a {
+    animation: none;
+  }
+}

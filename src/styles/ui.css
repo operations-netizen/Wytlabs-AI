@@ -1,0 +1,395 @@
+/* ==========================================================================
+   UI primitives — layout, editorial section heads, buttons, panels, rules.
+   Buttons follow the live wytlabs.com CTA: near-square, uppercase, bold,
+   wide-tracked. Nothing here uses a pill radius or a purple gradient.
+   ========================================================================== */
+
+/* ---- Layout ------------------------------------------------------------ */
+.wrap {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wrap--wide {
+  max-width: var(--page-wide);
+}
+
+.sec {
+  position: relative;
+  padding-block: var(--section);
+  background: var(--bg);
+}
+
+.sec--lg {
+  padding-block: var(--section-lg);
+}
+
+.sec--tight {
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+}
+
+.sec--alt {
+  background: var(--bg-alt);
+}
+
+.sec--soft {
+  background: var(--bg-soft);
+}
+
+.sec--dark {
+  background: var(--navy-900);
+}
+
+.sec__in {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hairline that reads as a drafting rule rather than a border */
+.rule {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+}
+
+/* ---- Eyebrow / micro-label -------------------------------------------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.eyebrow__idx {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-4);
+}
+
+.eyebrow__bar {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  flex: none;
+}
+
+/* ---- Editorial section head ------------------------------------------- */
+.head {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 4.5vw, 4.5rem);
+}
+
+.head--center {
+  justify-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Two-column editorial head: title left, lede right */
+.head--split {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  max-width: none;
+}
+
+.head--split .head__title {
+  grid-row: 2;
+  align-self: start;
+}
+
+.head--split .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.head--split .head__lede {
+  grid-row: 2;
+  align-self: end;
+  padding-bottom: 0.35rem;
+}
+
+.head__title {
+  margin: 0;
+}
+
+.head__lede {
+  font-size: var(--t-lead);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  max-width: 38rem;
+  font-weight: var(--fw-regular);
+}
+
+@media (max-width: 860px) {
+  .head--split {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .head--split .head__title,
+  .head--split .head__lede {
+    grid-row: auto;
+  }
+}
+
+/* ---- Buttons ---------------------------------------------------------- */
+.btn {
+  --py: 1rem;
+  --px: 1.75rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: var(--py) var(--px);
+  border: 1px solid transparent;
+  border-radius: var(--r-1);
+  font-size: var(--t-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease),
+    border-color var(--d-2) var(--ease), box-shadow var(--d-2) var(--ease),
+    transform var(--d-2) var(--ease);
+}
+
+.btn--sm {
+  --py: 0.7rem;
+  --px: 1.15rem;
+  font-size: var(--t-label);
+}
+
+.btn--lg {
+  --py: 1.15rem;
+  --px: 2.25rem;
+  font-size: var(--t-sm);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* Primary: solid brand ultramarine */
+.btn--primary {
+  background: var(--brand-700);
+  color: var(--white);
+  box-shadow: var(--e-brand);
+}
+
+.btn--primary:hover {
+  background: var(--brand-800);
+  box-shadow: 0 12px 30px -8px rgba(22, 44, 185, 0.55);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Outline: hairline that fills on hover */
+.btn--outline {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--rule-strong);
+}
+
+.btn--outline:hover {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+/* Solid white, for dark grounds */
+.btn--light {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.btn--light:hover {
+  background: var(--brand-100);
+  transform: translateY(-1px);
+}
+
+.btn__arrow {
+  transition: transform var(--d-2) var(--ease);
+  flex: none;
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Inline link with rule + arrow ----------------------------------- */
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--accent-text);
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--accent-wash-rule);
+  transition: gap var(--d-2) var(--ease), border-color var(--d-2) var(--ease),
+    color var(--d-2) var(--ease);
+}
+
+.tlink:hover {
+  gap: 0.8rem;
+  border-bottom-color: currentColor;
+}
+
+/* ---- Panel: the one card treatment, used sparingly ------------------- */
+.panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  transition: border-color var(--d-3) var(--ease), box-shadow var(--d-3) var(--ease),
+    transform var(--d-3) var(--ease), background var(--d-3) var(--ease);
+}
+
+.panel--lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--rule-strong);
+  box-shadow: var(--e-3);
+}
+
+/* ---- Tag / meta chip ------------------------------------------------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-1);
+  background: var(--surface);
+  font-size: var(--t-label);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.tag--accent {
+  background: var(--accent-wash);
+  border-color: var(--accent-wash-rule);
+  color: var(--accent-text);
+}
+
+.tag--solid {
+  background: var(--brand-700);
+  border-color: transparent;
+  color: var(--white);
+}
+
+/* ---- Ticked list ----------------------------------------------------- */
+.ticks {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.ticks li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  font-size: var(--t-sm);
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.ticks svg {
+  margin-top: 3px;
+  color: var(--accent-text);
+}
+
+/* ---- Gradient display text (used once or twice, not everywhere) ------ */
+.gtext {
+  background: var(--grad-text-light);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gtext--ink {
+  background: linear-gradient(100deg, #162cb9 0%, #2a4ce8 50%, #169cf5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- Decorative: drafting grid + glow ------------------------------- */
+.mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(146, 168, 251, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(146, 168, 251, 0.09) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 10%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 10%, transparent 78%);
+}
+
+.aura {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Scroll reveal --------------------------------------------------- */
+.rv {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--d-4) var(--ease), transform var(--d-4) var(--ease);
+  transition-delay: var(--rv-delay, 0ms);
+}
+
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Screen frame: how every product visual is presented ------------- */
+.frame {
+  position: relative;
+  border-radius: var(--r-4);
+  padding: 8px;
+  background: linear-gradient(160deg, rgba(22, 44, 185, 0.1), rgba(22, 156, 245, 0.06) 55%, rgba(20, 24, 40, 0.06));
+  border: 1px solid var(--rule);
+  box-shadow: var(--e-5);
+}
+
+.dark .frame {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.02) 50%, rgba(91, 120, 245, 0.16));
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: var(--e-dark);
+}
+
+.frame > .app {
+  border-radius: var(--r-3);
+}

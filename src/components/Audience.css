@@ -1,0 +1,112 @@
+.aud {
+  background: var(--bg-alt);
+}
+
+/* Four large cards on a 2×2 grid, divided by hairlines rather than gaps. */
+.aud__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-4);
+  overflow: hidden;
+}
+
+.aud__c {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  background: var(--bg);
+  transition: background var(--d-2) var(--ease);
+}
+
+.aud__c:hover {
+  background: var(--white);
+}
+
+.aud__i {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-2);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-wash-rule);
+  color: var(--accent-text);
+  margin-bottom: var(--s-2);
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease),
+    transform var(--d-3) var(--ease);
+}
+
+.aud__c:hover .aud__i {
+  background: var(--brand-700);
+  border-color: transparent;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.aud__t {
+  font-size: var(--t-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-head);
+  margin: 0;
+}
+
+.aud__b {
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0;
+  max-width: 44ch;
+}
+
+.aud__p {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+.aud__p li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  font-size: var(--t-xs);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.aud__p svg {
+  margin-top: 3px;
+  color: var(--accent-text);
+}
+
+/* A single verified detail per card, not a fabricated statistic. */
+.aud__stat {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: var(--s-4) 0 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.aud__stat svg {
+  color: var(--signal-600);
+  flex: none;
+}
+
+@media (max-width: 720px) {
+  .aud__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

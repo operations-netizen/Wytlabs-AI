@@ -1,0 +1,223 @@
+/* ==========================================================================
+   WYTLABS AI — DESIGN SYSTEM
+   --------------------------------------------------------------------------
+   Derived from the live Wytlabs identity, not from a generic SaaS palette:
+
+     · Brand blue   #162CB9  — the ultramarine used for wytlabs.com headline
+                               accents and primary CTAs
+     · Signal blue  #169CF5  — the bright secondary accent
+     · Ink          #141414  — matches the ink in the official logo artwork
+     · Typeface     Montserrat — the typeface used across wytlabs.com, and a
+                               geometric match for the WYTLABS wordmark
+
+   The wordmark is thin, wide-tracked and architectural. The system echoes
+   that: hairline rules, near-square corners, wide-tracked uppercase labels,
+   and restraint with colour. Deliberately NOT rounded-pill purple-gradient.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand ----------------------------------------------------------- */
+  --brand-900: #0b1470;
+  --brand-800: #101f96;
+  --brand-700: #162cb9; /* primary brand blue */
+  --brand-600: #1e3ad6;
+  --brand-500: #2a4ce8;
+  --brand-400: #5b78f5;
+  --brand-300: #92a8fb;
+  --brand-200: #c5d2fe;
+  --brand-100: #e6ebff;
+  --brand-50: #f2f5ff;
+
+  --signal-600: #0b7ecc;
+  --signal-500: #169cf5;
+  --signal-400: #4db6f9;
+  --signal-200: #b3e0fd;
+
+  /* A single restrained violet, used only as a gradient tail. */
+  --violet-600: #4a2ec2;
+  --violet-500: #5b3ad6;
+
+  /* ---- Neutrals: cool, blue-cast greys --------------------------------- */
+  --ink: #141414; /* logo ink */
+  --ink-800: #1c2130;
+  --ink-700: #333a4d;
+  --ink-600: #4e566b;
+  --ink-500: #6b7488;
+  --ink-400: #8f97a8;
+  --ink-300: #b8bfcc;
+  --ink-200: #dde2ea;
+  --ink-150: #e8ecf2;
+  --ink-100: #f0f3f8;
+  --ink-50: #f6f8fb;
+  --white: #ffffff;
+
+  /* ---- Deep navy scale (dark sections) — hue-anchored to the brand ----- */
+  --navy-950: #04061a;
+  --navy-900: #070b24;
+  --navy-850: #0a1030;
+  --navy-800: #0d143c;
+  --navy-700: #131d54;
+  --navy-600: #1b2870;
+  --navy-500: #24359a;
+
+  /* ---- Semantic: light context (default) ------------------------------ */
+  --bg: var(--white);
+  --bg-alt: var(--ink-50);
+  --bg-soft: #eef2f9; /* the "soft blue/grey" band */
+  --surface: var(--white);
+  --surface-alt: var(--ink-50);
+
+  --text: var(--ink);
+  --text-2: var(--ink-600);
+  --text-3: var(--ink-500);
+  --text-4: var(--ink-400);
+
+  --rule: var(--ink-200); /* hairline */
+  --rule-strong: var(--ink-300);
+
+  --accent: var(--brand-700);
+  --accent-hover: var(--brand-800);
+  --accent-text: var(--brand-700);
+  --accent-wash: var(--brand-50);
+  --accent-wash-rule: var(--brand-200);
+
+  --on-accent: var(--white);
+
+  /* ---- Gradients: restrained, brand-anchored -------------------------- */
+  --grad-brand: linear-gradient(120deg, #162cb9 0%, #1e3ad6 60%, #2a4ce8 100%);
+  --grad-brand-deep: linear-gradient(135deg, #0b1470 0%, #162cb9 55%, #24359a 100%);
+  --grad-signal: linear-gradient(120deg, #162cb9 0%, #169cf5 100%);
+  --grad-hero: radial-gradient(ellipse 130% 100% at 50% -20%, #16225e 0%, #0a1030 45%, #04061a 100%);
+  --grad-text-light: linear-gradient(100deg, #92a8fb 0%, #4db6f9 55%, #c5d2fe 100%);
+
+  /* ---- Typography ----------------------------------------------------- */
+  --font: "Montserrat Variable", "Montserrat", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* ---- Type scale -----------------------------------------------------
+     Deliberately generous: hero 44→72px, section headings 32→56px,
+     subheads 22→32px, body 17→19px, labels 12→13px. Nothing on the page
+     renders body copy below 15px. */
+  --t-display: clamp(2.75rem, 4.2vw, 4.5rem); /* 44 → 72 */
+  --t-h1: clamp(2.5rem, 3.6vw, 4rem);
+  --t-h2: clamp(2rem, 2vw + 0.75rem, 3.25rem); /* 32 → 52 */
+  --t-h3: clamp(1.375rem, 1.1vw + 0.85rem, 2rem); /* 22 → 32 */
+  --t-h4: clamp(1.1875rem, 0.5vw + 1.05rem, 1.5rem); /* 19 → 24 */
+
+  --t-lead: clamp(1.125rem, 0.35vw + 1.05rem, 1.375rem); /* 18 → 22 */
+  --t-body: clamp(1.0625rem, 0.16vw + 1.03rem, 1.1875rem); /* 17 → 19 */
+  --t-sm: 1rem;
+  --t-xs: 0.9375rem;
+  --t-2xs: 0.8125rem;
+  --t-label: 0.75rem;
+
+  /* Comfortable measure: ~62–70 characters. */
+  --measure: 64ch;
+  --measure-tight: 54ch;
+
+  --lh-display: 1.02;
+  --lh-tight: 1.1;
+  --lh-head: 1.2;
+  --lh-body: 1.62;
+  --lh-loose: 1.75;
+
+  /* The wordmark is wide-tracked; micro-labels echo it. */
+  --tr-label: 0.2em;
+  --tr-label-tight: 0.14em;
+  --tr-display: -0.03em;
+  --tr-head: -0.022em;
+  --tr-body: 0.005em;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* ---- Space: strict 8px system (4px half-steps) ---------------------- */
+  --s-1: 0.25rem; /*  4 */
+  --s-2: 0.5rem; /*   8 */
+  --s-3: 0.75rem; /*  12 */
+  --s-4: 1rem; /*     16 */
+  --s-5: 1.5rem; /*   24 */
+  --s-6: 2rem; /*     32 */
+  --s-7: 2.5rem; /*   40 */
+  --s-8: 3rem; /*     48 */
+  --s-9: 4rem; /*     64 */
+  --s-10: 5rem; /*    80 */
+  --s-11: 6rem; /*    96 */
+  --s-12: 8rem; /*   128 */
+
+  /* Trust-band height. Shared, because the hero subtracts it from the fold so
+     that hero + band together occupy exactly one screen. 72 -> 94px. */
+  --trust-h: clamp(4.5rem, 2.8125vw + 2.5rem, 5.875rem);
+
+  --section: clamp(3.75rem, 6vw, 7.5rem); /* 60 → 120 */
+  --section-lg: clamp(4.5rem, 7vw, 8.75rem); /* 72 → 140 */
+  --gutter: clamp(1.25rem, 3.4vw, 3rem);
+  --page: 1280px;
+  --page-wide: 1440px;
+
+  /* ---- Radius: near-square. wytlabs.com CTAs use 2px. ----------------- */
+  --r-0: 0px;
+  --r-1: 2px;
+  --r-2: 4px;
+  --r-3: 6px;
+  --r-4: 10px;
+  --r-5: 14px;
+  --r-6: 20px;
+
+  /* ---- Elevation: layered, low-spread, blue-cast ---------------------- */
+  --e-1: 0 1px 2px rgba(20, 24, 40, 0.05);
+  --e-2: 0 1px 3px rgba(20, 24, 40, 0.07), 0 2px 8px -3px rgba(20, 24, 40, 0.06);
+  --e-3: 0 2px 6px rgba(20, 24, 40, 0.06), 0 10px 28px -10px rgba(20, 24, 40, 0.14);
+  --e-4: 0 4px 12px rgba(20, 24, 40, 0.07), 0 24px 56px -18px rgba(20, 24, 40, 0.2);
+  --e-5: 0 8px 20px rgba(20, 24, 40, 0.08), 0 40px 90px -28px rgba(20, 24, 40, 0.26);
+  --e-brand: 0 8px 24px -8px rgba(22, 44, 185, 0.42);
+  --e-dark: 0 32px 80px -28px rgba(0, 0, 0, 0.7);
+
+  /* ---- Motion --------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.66, 0, 0.34, 1);
+  --d-1: 140ms;
+  --d-2: 220ms;
+  --d-3: 360ms;
+  --d-4: 620ms;
+
+  --z-nav: 100;
+  --z-drawer: 110;
+}
+
+/* ==========================================================================
+   Dark context. Applied to a section (or panel) to re-point the semantic
+   tokens — components never need dark-specific rules.
+   ========================================================================== */
+.dark {
+  --bg: var(--navy-900);
+  --bg-alt: var(--navy-850);
+  --bg-soft: var(--navy-800);
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-alt: rgba(255, 255, 255, 0.06);
+
+  --text: var(--white);
+  --text-2: rgba(216, 226, 248, 0.74);
+  --text-3: rgba(184, 199, 228, 0.58);
+  --text-4: rgba(160, 178, 212, 0.44);
+
+  --rule: rgba(255, 255, 255, 0.1);
+  --rule-strong: rgba(255, 255, 255, 0.2);
+
+  --accent: var(--brand-300);
+  --accent-hover: var(--white);
+  --accent-text: var(--brand-300);
+  --accent-wash: rgba(91, 120, 245, 0.14);
+  --accent-wash-rule: rgba(146, 168, 251, 0.26);
+
+  --e-2: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --e-3: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+  --e-4: 0 24px 60px -20px rgba(0, 0, 0, 0.65);
+  --e-5: var(--e-dark);
+
+  color-scheme: dark;
+}

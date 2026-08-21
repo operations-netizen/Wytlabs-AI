@@ -1,0 +1,6 @@
+/* Global entry: tokens → reset/base → primitives → product-UI → motion. */
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/ui.css';
+@import './styles/mockups.css';
+@import './styles/motion.css';

@@ -1,0 +1,207 @@
+.flow {
+  background: var(--bg-soft);
+}
+
+/* ---- Rail -------------------------------------------------------------- */
+.flow__rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+}
+
+.flow__step {
+  position: relative;
+  padding: var(--s-6) clamp(0.85rem, 1.6vw, 1.5rem) 0 0;
+}
+
+.flow__step:last-child {
+  padding-right: 0;
+}
+
+/* Rail segment above each step */
+.flow__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--rule-strong);
+}
+
+.flow__step:first-child .flow__bar {
+  background: linear-gradient(90deg, var(--brand-700), var(--brand-500));
+}
+
+.flow__step:nth-child(2) .flow__bar {
+  background: linear-gradient(90deg, var(--brand-500), var(--brand-400));
+}
+
+.flow__step:nth-child(3) .flow__bar {
+  background: linear-gradient(90deg, var(--brand-400), var(--signal-500));
+}
+
+.flow__step:last-child .flow__bar {
+  background: linear-gradient(90deg, var(--signal-500), var(--signal-200));
+}
+
+
+.flow__n {
+  display: block;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--s-4);
+}
+
+.flow__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-1);
+  background: var(--white);
+  border: 1px solid var(--rule);
+  color: var(--accent-text);
+  margin-bottom: var(--s-4);
+  box-shadow: var(--e-1);
+}
+
+
+.flow__t {
+  font-size: var(--t-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.012em;
+  margin: 0 0 0.55rem;
+  max-width: 18ch;
+}
+
+.flow__b {
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* ---- Proof block ------------------------------------------------------ */
+.flow__proof {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 4.5vw, 4rem);
+  align-items: center;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--rule);
+}
+
+.flow__pcopy {
+  max-width: 28rem;
+}
+
+.flow__pt {
+  font-size: var(--t-h3);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-display);
+  margin: var(--s-4) 0 var(--s-4);
+}
+
+.flow__pb {
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0 0 var(--s-5);
+}
+
+.flow__pframe {
+  min-width: 0;
+}
+
+@media (max-width: 1180px) {
+  .flow__rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: var(--s-7);
+  }
+
+  /* Rail segments only run within each row */
+  .flow__step:nth-child(3n) .flow__bar {
+    display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .flow__rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow__step:nth-child(3n) .flow__bar {
+    display: block;
+  }
+
+  .flow__step:nth-child(even) .flow__bar {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .flow__proof {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .flow__rail {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+  }
+
+  .flow__step {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-areas:
+      'icon n'
+      'icon title'
+      'icon body';
+    column-gap: var(--s-5);
+    padding: 0 0 var(--s-6);
+  }
+
+  .flow__icon {
+    grid-area: icon;
+    margin-bottom: 0;
+  }
+
+  .flow__n {
+    grid-area: n;
+    margin-bottom: 0.2rem;
+  }
+
+  .flow__t {
+    grid-area: title;
+    max-width: none;
+  }
+
+  .flow__b {
+    grid-area: body;
+    margin-top: 0.3rem;
+  }
+
+  /* Rail becomes a vertical spine through the icons */
+  .flow__bar {
+    top: 46px;
+    bottom: -6px;
+    left: 19px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: var(--rule-strong) !important;
+  }
+
+  .flow__step:last-child {
+    padding-bottom: 0;
+  }
+
+  .flow__step:last-child .flow__bar {
+    display: none;
+  }
+}

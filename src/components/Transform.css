@@ -1,0 +1,295 @@
+.tf {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-soft);
+  border-block: 1px solid var(--rule);
+}
+
+.tf__aura {
+  width: 46rem;
+  height: 26rem;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 156, 245, 0.13);
+}
+
+/* ---- Flow ------------------------------------------------------------- */
+.tf__flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1.2fr) 64px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0;
+}
+
+/* Labels share one baseline; content and connectors centre on the row below. */
+.tf__label--1 { grid-area: 1 / 1; }
+.tf__label--2 { grid-area: 1 / 3; }
+.tf__label--3 { grid-area: 1 / 5; }
+.tf__cell--1 { grid-area: 2 / 1; }
+.tf__cell--2 { grid-area: 2 / 3; }
+.tf__cell--3 { grid-area: 2 / 5; }
+.tf__wire--fan { grid-area: 2 / 2; }
+.tf__wire--join { grid-area: 2 / 4; }
+
+.tf__cell {
+  min-width: 0;
+}
+
+.tf__label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--s-4);
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.tf__num {
+  padding-right: 0.6rem;
+  border-right: 1px solid var(--rule-strong);
+  color: var(--accent-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Stage 1: the brief ---------------------------------------------- */
+.tf__brief {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+  background: var(--white);
+  box-shadow: var(--e-3);
+}
+
+.tf__brieft {
+  font-size: var(--t-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ---- Connectors ------------------------------------------------------- */
+.tf__wire {
+  width: 100%;
+  height: 300px;
+  align-self: center;
+  overflow: visible;
+}
+
+.tf__wire path {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: tf-draw 1.2s var(--ease) both;
+}
+
+@keyframes tf-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---- Stage 2: generated assets --------------------------------------- */
+.tf__outs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.tf__out {
+  display: grid;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-2);
+  background: var(--white);
+  overflow: hidden;
+  box-shadow: var(--e-2);
+  transition: transform var(--d-3) var(--ease), box-shadow var(--d-3) var(--ease);
+}
+
+.tf__out:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--e-4);
+}
+
+.tf__outart {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.tf__outb {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.6rem 0.7rem 0.75rem;
+}
+
+.tf__outk {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.tf__outt {
+  font-size: var(--t-xs);
+  font-weight: var(--fw-semi);
+  line-height: 1.35;
+  color: var(--text);
+}
+
+/* ---- Stage 3: the schedule ------------------------------------------- */
+.tf__ship {
+  border: 1px solid var(--rule);
+  border-radius: var(--r-3);
+  background: var(--white);
+  overflow: hidden;
+  box-shadow: var(--e-3);
+}
+
+.tf__shiph {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-alt);
+  font-size: var(--t-2xs);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+}
+
+.tf__shiph svg {
+  color: var(--accent-text);
+  flex: none;
+}
+
+.tf__queue li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tf__queue svg {
+  color: var(--text-4);
+}
+
+.tf__qt {
+  font-size: var(--t-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tf__qm {
+  font-size: var(--t-label);
+  color: var(--text-4);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tf__shipf {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.8rem;
+  font-size: var(--t-label);
+  font-weight: var(--fw-semi);
+  color: #0e8f6f;
+  margin: 0;
+}
+
+/* ---- Responsive: one vertical spine ---------------------------------- */
+@media (max-width: 1080px) {
+  .tf__flow {
+    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    padding-left: 2rem;
+  }
+
+  .tf__flow::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 0.5rem;
+    bottom: 1.5rem;
+    width: 2px;
+    background: linear-gradient(180deg, var(--brand-700), var(--signal-500));
+    opacity: 0.32;
+  }
+
+  .tf__wire {
+    display: none;
+  }
+
+  /* Reset the desktop placement and interleave label → content, since the
+     markup emits all three labels before all three content cells. */
+  .tf__label--1,
+  .tf__label--2,
+  .tf__label--3,
+  .tf__cell--1,
+  .tf__cell--2,
+  .tf__cell--3 {
+    grid-area: auto;
+  }
+
+  .tf__label--1 { order: 1; }
+  .tf__cell--1 { order: 2; }
+  .tf__label--2 { order: 3; }
+  .tf__cell--2 { order: 4; }
+  .tf__label--3 { order: 5; }
+  .tf__cell--3 { order: 6; }
+
+  .tf__label {
+    position: relative;
+    margin-bottom: var(--s-4);
+  }
+
+  .tf__cell {
+    padding-bottom: var(--s-7);
+  }
+
+  .tf__cell:last-child {
+    padding-bottom: 0;
+  }
+
+  .tf__label::before {
+    content: "";
+    position: absolute;
+    left: calc(-2rem + 3px);
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--brand-700);
+  }
+}
+
+@media (max-width: 560px) {
+  .tf__outs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tf__wire path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

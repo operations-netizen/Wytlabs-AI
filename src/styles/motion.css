@@ -1,0 +1,179 @@
+/* ==========================================================================
+   MOTION
+   --------------------------------------------------------------------------
+   Micro-interactions only, and all of it subtle: nothing bounces, nothing
+   loops loudly, nothing moves that the visitor did not ask to see.
+
+   Reveal-triggered rules hang off `.rv.in`, the class the Reveal component
+   adds the first time an element crosses the fold, so these play once as the
+   section arrives rather than on load. Looping rules are reserved for the
+   product mockups, where a little life makes the interface read as software
+   rather than a screenshot.
+
+   Everything here is switched off under prefers-reduced-motion at the bottom
+   of the file.
+   ========================================================================== */
+
+/* ---- Eyebrow rule draws in ------------------------------------------- */
+.eyebrow__bar {
+  transform-origin: left;
+}
+
+.rv.in .eyebrow__bar,
+.eyebrow.rv.in .eyebrow__bar {
+  animation: m-rule 620ms var(--ease) 120ms both;
+}
+
+@keyframes m-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Workflow rail segments draw left to right ----------------------- */
+.flow__step .flow__bar {
+  transform-origin: left;
+}
+
+.flow__step.rv.in .flow__bar {
+  animation: m-rule 720ms var(--ease) both;
+}
+
+/* ---- Bar chart grows from the baseline ------------------------------- */
+.bars i {
+  transform-origin: bottom;
+}
+
+.rv.in .bars i {
+  animation: m-grow 760ms var(--ease) both;
+}
+
+.rv.in .bars i:nth-child(1) { animation-delay: 60ms; }
+.rv.in .bars i:nth-child(2) { animation-delay: 120ms; }
+.rv.in .bars i:nth-child(3) { animation-delay: 180ms; }
+.rv.in .bars i:nth-child(4) { animation-delay: 240ms; }
+.rv.in .bars i:nth-child(5) { animation-delay: 300ms; }
+.rv.in .bars i:nth-child(6) { animation-delay: 360ms; }
+.rv.in .bars i:nth-child(7) { animation-delay: 420ms; }
+
+@keyframes m-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* ---- Sparklines draw ------------------------------------------------- */
+.rv.in .m__spark path {
+  stroke-dasharray: 200;
+  animation: m-draw 1s var(--ease) 200ms both;
+}
+
+@keyframes m-draw {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---- Generated copy shimmers, so drafting reads as in progress ------- */
+.lines--accent i {
+  background-size: 220% 100%;
+  animation: m-shimmer 2.8s var(--ease-io) infinite;
+}
+
+.lines--accent i:nth-child(2) { animation-delay: 220ms; }
+.lines--accent i:nth-child(3) { animation-delay: 440ms; }
+.lines--accent i:nth-child(4) { animation-delay: 660ms; }
+
+@keyframes m-shimmer {
+  0%,
+  100% {
+    background-position: 120% 0;
+    opacity: 0.75;
+  }
+  50% {
+    background-position: -20% 0;
+    opacity: 1;
+  }
+}
+
+/* ---- Live status dots breathe --------------------------------------- */
+.st--live i,
+.st--go i {
+  animation: m-pulse 2.4s var(--ease-io) infinite;
+}
+
+@keyframes m-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.82);
+  }
+}
+
+/* ---- Product frames lift on hover ----------------------------------- */
+.frame {
+  transition: transform var(--d-3) var(--ease), box-shadow var(--d-3) var(--ease);
+}
+
+.feat__wide .frame:hover,
+.feat__stageframe:hover,
+.plat__frame:hover,
+.flow__pframe:hover {
+  transform: translateY(-4px);
+}
+
+/* ---- Nav links and CTAs -------------------------------------------- */
+.nav--solid .nav__in {
+  transition: height var(--d-2) var(--ease);
+}
+
+.btn--primary:focus-visible,
+.btn--light:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ---- Reveal: a slightly shorter travel reads calmer at large sizes -- */
+.head__title.rv {
+  transform: translateY(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv.in .eyebrow__bar,
+  .eyebrow.rv.in .eyebrow__bar,
+  .flow__step.rv.in .flow__bar,
+  .rv.in .bars i,
+  .rv.in .m__spark path,
+  .lines--accent i,
+  .st--live i,
+  .st--go i {
+    animation: none;
+  }
+
+  .rv.in .m__spark path {
+    stroke-dasharray: none;
+  }
+
+  .feat__wide .frame:hover,
+  .feat__stageframe:hover,
+  .plat__frame:hover,
+  .flow__pframe:hover {
+    transform: none;
+  }
+
+  .head__title.rv {
+    transform: none;
+  }
+}

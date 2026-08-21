@@ -1,0 +1,206 @@
+.why {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 110% 80% at 80% 0%, #131d54 0%, #0a1030 48%, #04061a 100%);
+}
+
+.why__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.why__t {
+  margin-top: var(--s-5);
+  max-width: 22ch;
+}
+
+.why__side {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-5);
+}
+
+.why__l {
+  font-size: var(--t-body);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0;
+  max-width: 30rem;
+}
+
+/* ---- Pillars --------------------------------------------------------- */
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.why__p {
+  padding: var(--s-6) clamp(1rem, 2vw, 1.75rem) 0;
+  border-right: 1px solid var(--rule);
+}
+
+/* Same rule as the problem columns: clear the divider on both sides, keep the
+   outer edges flush to the page grid. */
+.why__p:first-child {
+  padding-left: 0;
+}
+
+.why__p:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.why__pn {
+  display: block;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  color: var(--text-4);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--s-5);
+}
+
+.why__pi {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-1);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-wash-rule);
+  color: var(--brand-300);
+  margin-bottom: var(--s-4);
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease);
+}
+
+.why__p:hover .why__pi {
+  background: var(--white);
+  border-color: transparent;
+  color: var(--brand-700);
+}
+
+.why__pk {
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--signal-400);
+  margin-bottom: 0.5rem;
+}
+
+.why__pt {
+  font-size: var(--t-body);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.014em;
+  color: var(--white);
+  margin: 0 0 0.6rem;
+  max-width: 20ch;
+}
+
+.why__pb {
+  font-size: var(--t-xs);
+  line-height: var(--lh-loose);
+  color: var(--text-3);
+  margin: 0;
+}
+
+/* ---- Credential footer ---------------------------------------------- */
+.why__foot {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  flex-wrap: wrap;
+  margin-top: clamp(3rem, 5vw, 4.5rem);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+.why__fdiv {
+  width: 1px;
+  height: 20px;
+  background: var(--rule-strong);
+  flex: none;
+}
+
+.why__creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem clamp(1rem, 2.5vw, 2rem);
+}
+
+.why__creds li {
+  font-size: var(--t-xs);
+  font-weight: var(--fw-semi);
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .why__top {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .why__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Odd card out spans the row */
+  .why__p:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .why__p {
+    padding: var(--s-6) var(--s-5);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .why__p:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  .why__p:nth-child(even) {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .why__p:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .why__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .why__p,
+  .why__p:first-child,
+  .why__p:nth-child(odd),
+  .why__p:nth-child(even) {
+    padding: var(--s-5) 0;
+    border-right: 0;
+  }
+
+  .why__p:last-child {
+    padding-bottom: 0;
+  }
+
+  .why__pt {
+    max-width: none;
+  }
+
+  .why__foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .why__fdiv {
+    display: none;
+  }
+}

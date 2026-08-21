@@ -1,0 +1,251 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--grad-hero);
+  padding-top: clamp(7rem, 13vh, 10rem);
+  isolation: isolate;
+}
+
+/* ── Fit the whole hero into the first screen ────────────────────────────
+   On a desktop viewport tall enough to hold it, the hero occupies exactly
+   one screen: nothing important — CTAs, the trust band below — sits
+   below the fold. Short and narrow viewports opt out and flow naturally,
+   because forcing a fixed height there would crush the content instead. */
+@media (min-width: 1181px) and (min-height: 660px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    /* The trust band directly below is part of the fold, so the hero takes
+       the screen minus that band. Together they fill it exactly. */
+    min-height: calc(100svh - var(--trust-h));
+    padding-top: 80px; /* clears the fixed header */
+    padding-bottom: 0;
+  }
+
+  .hero__in {
+    flex: 1 1 auto;
+    padding-block: clamp(1.25rem, 3vh, 3rem);
+  }
+
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__a1 {
+  width: 52rem;
+  height: 32rem;
+  top: -18rem;
+  left: -12rem;
+  background: rgba(22, 44, 185, 0.5);
+  opacity: 0.85;
+}
+
+.hero__a2 {
+  width: 40rem;
+  height: 26rem;
+  top: -6rem;
+  right: -12rem;
+  background: rgba(22, 156, 245, 0.24);
+}
+
+/* Vertical hairline marking the copy/visual gutter */
+.hero__seam {
+  display: none;
+}
+
+/* ---- Split composition ------------------------------------------------- */
+.hero__in {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 36rem) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.hero__copy {
+  max-width: 36rem;
+}
+
+.hero__eyebrow {
+  color: var(--brand-300);
+}
+
+.hero__h1 {
+  margin-top: var(--s-5);
+  /* 44px → 72px. The copy column is sized so the three lines never break
+     mid-phrase at any width. */
+  font-size: clamp(2.75rem, 4.4vw, 4.125rem); /* 44 → 66 */
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  color: var(--white);
+}
+
+.hero__lede {
+  margin-top: var(--s-5);
+  font-size: var(--t-lead);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  font-size: var(--t-body);
+  max-width: 100%; /* full column: measured to hold the copy to two lines */
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: var(--s-7);
+}
+
+.hero__cta .btn {
+  --px: 1.65rem;
+}
+
+.hero__ghost {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+.hero__ghost:hover {
+  background: var(--white);
+  color: var(--navy-900);
+  border-color: var(--white);
+}
+
+/* The frame runs past the container edge — it reads as a window onto a much
+   larger application rather than a boxed screenshot. */
+.hero__visual {
+  position: relative;
+  min-width: 0;
+}
+
+.hero__frame {
+  width: calc(100% + var(--gutter) + 3vw);
+}
+
+@media (min-width: 1181px) and (min-height: 660px) {
+  .hero__frame {
+    max-height: calc(100svh - 21rem);
+    overflow: hidden;
+    /* Fades the clipped edge so it looks deliberate rather than truncated. */
+    -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  }
+}
+
+/* On large displays the hero gets a wider stage than the rest of the page, so
+   the product frame reads at something close to real application scale. */
+@media (min-width: 1600px) {
+  .hero__in {
+    max-width: 1620px;
+  }
+}
+
+/* ---- Entrance ---------------------------------------------------------- */
+.hero__eyebrow,
+.hero__h1,
+.hero__lede,
+.hero__cta,
+.hero__visual {
+  animation: hero-in 880ms var(--ease) both;
+}
+
+.hero__eyebrow {
+  animation-delay: 60ms;
+}
+.hero__h1 {
+  animation-delay: 130ms;
+}
+.hero__lede {
+  animation-delay: 210ms;
+}
+.hero__cta {
+  animation-delay: 290ms;
+}
+
+.hero__visual {
+  animation-delay: 260ms;
+  animation-duration: 1100ms;
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 1180px) {
+  .hero__in {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .hero__copy {
+    max-width: 34rem;
+  }
+
+  .hero__h1 {
+    font-size: clamp(2.75rem, 7vw, 4.25rem);
+  }
+
+  .hero__lede {
+    max-width: 34rem;
+  }
+
+  .hero__frame {
+    width: 100%;
+  }
+
+  .hero__seam {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: clamp(6.5rem, 16vh, 9rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+    line-height: 1.04;
+  }
+
+  .hero__cta {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__cta .btn {
+    width: 100%;
+  }
+
+  .hero__frame {
+    padding: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__eyebrow,
+  .hero__h1,
+  .hero__lede,
+  .hero__cta,
+  .hero__visual {
+    animation: none;
+  }
+}

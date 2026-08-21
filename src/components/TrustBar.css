@@ -1,0 +1,175 @@
+/* ==========================================================================
+   TRUST BAND — infinite partner-logo marquee
+   --------------------------------------------------------------------------
+   The band opens the light half of the page, sitting directly under the dark
+   hero and sharing the surface of the section below it. Light is not a
+   preference here: the marks are dark ink — black wordmarks, grey type — which
+   would be invisible on navy, and recolouring third-party artwork is not an
+   option.
+   ========================================================================== */
+
+.trust {
+  position: relative;
+  z-index: 2;
+  /* The same surface as the section below. The band lives OUTSIDE the hero on
+     purpose: inside `.hero.dark`, `--bg-alt` re-points to navy, and any light
+     slab there is an intrusion into a dark block no amount of blending fixes.
+     Out here it is simply the top of the page's light half, so the boundary is
+     the ordinary dark-to-light section change the page already makes. */
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--rule);
+}
+
+
+.trust__in {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+  /* Slim: --trust-h sets the band's height and the hero subtracts exactly
+     that, so padding tall enough to beat it would push the pair past the
+     fold. Vertical space comes from min-height + centring instead. */
+  padding-block: 0.5rem;
+  min-height: var(--trust-h);
+  min-width: 0;
+}
+
+.trust__label {
+  flex: none;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+/* The viewport clips the track and softens both edges, so logos dissolve in
+   and out instead of being sliced by a hard border. */
+.trust__vp {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 5rem,
+    #000 calc(100% - 5rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 5rem,
+    #000 calc(100% - 5rem),
+    transparent 100%
+  );
+}
+
+.trust__track {
+  display: flex;
+  width: max-content;
+  /* Pace: the reference strip on wytlabs.com travels ~170px/s. Matching that
+     exactly reads frantic in a band this short, so this lands at ~95px/s on a
+     wide screen — clearly alive, still legible. Speed eases off on narrow
+     screens because the set is narrower while the duration is fixed, which is
+     what you want on a phone. */
+  --trust-per-logo: 2.2s;
+  /* One cycle travels exactly one set, whatever the copy count — so duration
+     is per-logo x logos-per-set, and adding a partner keeps the speed
+     constant instead of making the whole strip run faster. */
+  animation: trust-scroll calc(var(--trust-per-logo) * 5) linear infinite;
+}
+
+.trust__vp:hover .trust__track,
+.trust__vp:focus-within .trust__track {
+  animation-play-state: paused;
+}
+
+.trust__set {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.trust__item {
+  flex: none;
+  padding-inline: clamp(1.25rem, 2.6vw, 2.5rem);
+}
+
+.trust__logo {
+  display: block;
+  width: auto;
+  height: clamp(2.125rem, 3.1vw, 3.125rem); /* 34 → 50 */
+  /* The marks are third-party artwork: never recoloured, never distorted.
+     Height alone drives the size so every aspect ratio is preserved. */
+  object-fit: contain;
+  user-select: none;
+}
+
+@keyframes trust-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* Exactly one set: -(100 / copies)%. The seam lands where it started. */
+    transform: translate3d(calc(-100% / var(--trust-copies, 4)), 0, 0);
+  }
+}
+
+/* ---- Small screens: the label sits above the strip ---------------------- */
+@media (max-width: 640px) {
+  .trust__in {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .trust__vp {
+    width: 100%;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 2rem,
+      #000 calc(100% - 2rem),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 2rem,
+      #000 calc(100% - 2rem),
+      transparent 100%
+    );
+  }
+}
+
+/* ---- No motion: a static, wrapped row of the same logos ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .trust__track {
+    animation: none;
+    width: 100%;
+  }
+
+  /* The extra sets exist only to make the loop seamless — with no loop they
+     are redundant, so they go rather than repeating every logo four times. */
+  .trust__set[aria-hidden="true"] {
+    display: none;
+  }
+
+  .trust__set {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 0.75rem;
+  }
+
+  .trust__vp {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .trust__item:first-child {
+    padding-inline-start: 0;
+  }
+}

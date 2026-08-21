@@ -1,0 +1,295 @@
+.feat {
+  background: var(--bg);
+  padding-top: clamp(2.5rem, 4vw, 5rem);
+}
+
+.feat__b {
+  display: grid;
+}
+
+/* ---- Shared copy ------------------------------------------------------- */
+.feat__eyebrow {
+  gap: 0.85rem;
+  margin-bottom: var(--s-4);
+}
+
+.feat__eyebrow .eyebrow__idx {
+  padding-right: 0.85rem;
+  border-right: 1px solid var(--rule-strong);
+  color: var(--text-4);
+}
+
+.feat__t {
+  font-size: var(--t-h3);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-display);
+  margin: 0 0 var(--s-4);
+  max-width: 22ch;
+}
+
+.feat__d {
+  font-size: var(--t-body);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  margin: 0;
+  max-width: var(--measure);
+}
+
+.feat__pts {
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+/* order 3 is required: flipped blocks reorder their children, and without an
+   explicit order the default 0 hoists this rule above the block — which put
+   two rules back to back between neighbouring blocks. */
+.feat__rule {
+  order: 3;
+  grid-column: 1 / -1;
+  margin-block: clamp(3rem, 5vw, 5rem);
+}
+
+/* ======================================================================
+   full — split header above a full-width interface
+   ====================================================================== */
+.feat__b--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.feat__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 3.5rem) clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+
+.feat__headl .feat__t {
+  margin-bottom: 0;
+  max-width: 20ch;
+}
+
+.feat__headr {
+  display: grid;
+  gap: var(--s-5);
+}
+
+/* Benefits span the full width beneath the head, so the short left column is
+   never left hanging beside a tall right one. */
+.feat__ptsrow {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem clamp(1.25rem, 2.5vw, 2.5rem);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.feat__ptsrow li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  font-size: var(--t-xs);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.feat__ptsrow svg {
+  margin-top: 3px;
+  color: var(--accent-text);
+}
+
+.feat__wide {
+  min-width: 0;
+}
+
+/* ======================================================================
+   split / flip — copy beside the interface
+   ====================================================================== */
+.feat__b--split,
+.feat__b--flip {
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.feat__b--flip {
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+}
+
+.feat__b--flip .feat__copy {
+  order: 2;
+}
+
+.feat__b--flip .feat__v {
+  order: 1;
+}
+
+.feat__copy {
+  max-width: 32rem;
+}
+
+.feat__v {
+  min-width: 0;
+}
+
+.feat__frame {
+  transition: transform var(--d-3) var(--ease);
+}
+
+.feat__frame:hover {
+  transform: translateY(-4px);
+}
+
+/* ======================================================================
+   labels — wide interface with edge callouts
+   ====================================================================== */
+.feat__b--labels {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.feat__copy--lead {
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+
+.feat__copy--lead .feat__t {
+  max-width: 26ch;
+}
+
+.feat__stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+.feat__stageframe {
+  min-width: 0;
+}
+
+.feat__labels {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.feat__labels li {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--rule);
+  transition: padding-left var(--d-2) var(--ease);
+}
+
+.feat__labels li:hover {
+  padding-left: 0.35rem;
+}
+
+.feat__lic {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-1);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-wash-rule);
+  color: var(--accent-text);
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease);
+}
+
+.feat__labels li:hover .feat__lic {
+  background: var(--brand-700);
+  border-color: transparent;
+  color: var(--white);
+}
+
+.feat__lt {
+  display: block;
+  font-size: var(--t-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.15rem;
+}
+
+.feat__lb {
+  display: block;
+  font-size: var(--t-xs);
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+/* ---- Responsive ------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .feat__b--split,
+  .feat__b--flip {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-7);
+  }
+
+  .feat__b--flip .feat__copy,
+  .feat__b--flip .feat__v {
+    order: initial;
+  }
+
+  .feat__copy {
+    max-width: 40rem;
+  }
+
+  .feat__head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--s-5);
+  }
+
+  .feat__stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feat__labels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+  }
+
+  .feat__labels li {
+    border-bottom: 0;
+    border-right: 1px solid var(--rule);
+    padding: var(--s-4);
+  }
+}
+
+@media (max-width: 700px) {
+  .feat__ptsrow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feat__labels {
+    grid-template-columns: minmax(0, 1fr);
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .feat__labels li {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: var(--s-4) 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .feat__frame,
+  .feat__stageframe {
+    padding: 5px;
+  }
+
+  .feat__frame:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,502 @@
+.pr {
+  background: var(--bg);
+}
+
+/* ---- Control bar ------------------------------------------------------- */
+.pr__bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-6);
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+.pr__toggle {
+  display: inline-flex;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-1);
+  overflow: hidden;
+  flex: none;
+}
+
+.pr__tg {
+  padding: 0.7rem 1.35rem;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease);
+}
+
+.pr__tg + .pr__tg {
+  border-left: 1px solid var(--rule-strong);
+}
+
+.pr__tg:hover {
+  color: var(--text);
+}
+
+.pr__tg.on {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.pr__save {
+  flex: none;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-1);
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--text-4);
+  opacity: 0.5;
+  transition: opacity var(--d-2) var(--ease), color var(--d-2) var(--ease),
+    border-color var(--d-2) var(--ease), background var(--d-2) var(--ease);
+}
+
+.pr__save.on {
+  opacity: 1;
+  background: var(--accent-wash);
+  border-color: var(--accent-wash-rule);
+  color: var(--accent-text);
+}
+
+/* Visible marker that the rates are not final, kept to a tag rather than the
+   paragraph that previously sat under the plans. */
+.pr__ind {
+  flex: none;
+  padding: 0.4rem 0.7rem;
+  border: 1px dashed #e0b878;
+  border-radius: var(--r-1);
+  background: #fffaf0;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: #8a5a06;
+  white-space: nowrap;
+}
+
+.pr__trial {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+  font-size: var(--t-xs);
+  color: var(--text-3);
+}
+
+.pr__trial svg {
+  color: #0e8f6f;
+  flex: none;
+}
+
+/* ======================================================================
+   Recommended plan — the dominant panel.
+   ====================================================================== */
+.pr__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 0.95fr) minmax(0, 1.1fr);
+  border-radius: var(--r-4);
+  overflow: hidden;
+  background: linear-gradient(135deg, #0b1470 0%, #162cb9 58%, #24359a 100%);
+  color: var(--white);
+  box-shadow: 0 30px 70px -28px rgba(22, 44, 185, 0.6);
+}
+
+.pr__hcol {
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  min-width: 0;
+}
+
+.pr__hcol:last-child {
+  border-right: 0;
+}
+
+.pr__badge {
+  background: var(--white);
+  border-color: transparent;
+  color: var(--brand-700);
+}
+
+.pr__hname {
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-display);
+  margin: var(--s-4) 0 0.2rem;
+  color: var(--white);
+}
+
+.pr__htier {
+  font-size: var(--t-2xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: rgba(220, 229, 255, 0.66);
+  margin-bottom: var(--s-5);
+}
+
+.pr__hprice {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.pr__hsub {
+  margin: 0.35rem 0 0;
+  font-size: var(--t-2xs);
+  font-weight: var(--fw-semi);
+  color: #9fe8d4;
+}
+
+.pr__hcta {
+  margin-top: var(--s-5);
+}
+
+.pr__hlabel {
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: rgba(220, 229, 255, 0.6);
+  margin-bottom: var(--s-4);
+}
+
+.pr__hbest {
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: rgba(230, 237, 255, 0.9);
+  margin-bottom: var(--s-5);
+}
+
+.pr__hfeats {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.pr__hfeats li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: rgba(232, 238, 255, 0.92);
+}
+
+.pr__hfeats svg {
+  margin-top: 3px;
+  color: #9fe8d4;
+}
+
+/* ---- Shared price typography ----------------------------------------- */
+.pr__cur {
+  font-size: 1.1rem;
+  font-weight: var(--fw-semi);
+  opacity: 0.75;
+}
+
+.pr__amt {
+  font-size: clamp(2.25rem, 2.9vw, 2.875rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.045em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.pr__amt--word {
+  font-size: clamp(1.625rem, 2vw, 2rem);
+  letter-spacing: var(--tr-display);
+}
+
+.pr__per {
+  font-size: var(--t-xs);
+  font-weight: var(--fw-semi);
+  opacity: 0.72;
+}
+
+.pr__limits {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.pr__limits div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: var(--t-2xs);
+}
+
+.pr__limits dt {
+  color: rgba(220, 229, 255, 0.65);
+}
+
+.pr__limits dd {
+  margin: 0;
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ======================================================================
+   The other three plans as columns. Fixed-height slots keep the CTA, limits
+   and feature lists on one baseline across all three, and the trimmed copy
+   keeps a whole plan inside a single screen.
+   ====================================================================== */
+.pr__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--s-5);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-4);
+  overflow: hidden;
+}
+
+.pr__col {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  background: var(--bg);
+  border-right: 1px solid var(--rule);
+  transition: background var(--d-2) var(--ease);
+}
+
+.pr__col:last-child {
+  border-right: 0;
+}
+
+.pr__col:hover {
+  background: var(--bg-alt);
+}
+
+/* Fixed, not min-height: some plans carry a badge and some do not, and any
+   variance pushes every row below it out of alignment. */
+.pr__flag {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  margin-bottom: var(--s-3);
+}
+
+.pr__cbadge {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-1);
+  font-size: 0.625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.pr__cname {
+  font-size: var(--t-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-head);
+  margin: 0;
+}
+
+.pr__ctier {
+  margin: 0.25rem 0 var(--s-4);
+  font-size: var(--t-2xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tr-label-tight);
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.pr__cprice {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  min-height: 3.125rem;
+  margin: 0;
+}
+
+.pr__cprice .pr__cur,
+.pr__cprice .pr__per {
+  color: var(--text-3);
+  opacity: 1;
+}
+
+.pr__csub {
+  min-height: 1.4em;
+  margin: 0.3rem 0 0;
+  font-size: var(--t-2xs);
+  color: var(--text-4);
+}
+
+.pr__cbest {
+  min-height: 3em;
+  margin: var(--s-4) 0 var(--s-5);
+  font-size: var(--t-2xs);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.pr__climits {
+  display: grid;
+  gap: 0.45rem;
+  margin: var(--s-5) 0 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+}
+
+.pr__climits div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: var(--t-2xs);
+}
+
+.pr__climits dt {
+  color: var(--text-3);
+}
+
+.pr__climits dd {
+  margin: 0;
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pr__cfeats {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+}
+
+.pr__cfeats li {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: start;
+  font-size: var(--t-2xs);
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.pr__cfeats svg {
+  margin-top: 3px;
+  color: var(--accent-text);
+}
+
+
+
+
+
+
+
+
+
+
+/* ---- Responsive ------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .pr__hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pr__hcol:last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .pr__hfeats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .pr__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pr__col:nth-child(2) {
+    border-right: 0;
+  }
+
+  .pr__col:nth-child(3) {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .pr__trial {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .pr__hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pr__hcol {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .pr__hcol:last-child {
+    border-bottom: 0;
+    border-top: 0;
+  }
+
+  .pr__hfeats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pr__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pr__col,
+  .pr__col:nth-child(2) {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pr__col:nth-child(3) {
+    grid-column: auto;
+    border-top: 0;
+  }
+
+  .pr__col:last-child {
+    border-bottom: 0;
+  }
+
+  /* Nothing needs a reserved slot once the columns are stacked */
+  .pr__cprice,
+  .pr__csub,
+  .pr__cbest {
+    min-height: 0;
+  }
+
+  .pr__toggle,
+  .pr__tg {
+    flex: 1;
+  }
+
+  .pr__tg {
+    padding-inline: 0.85rem;
+  }
+}

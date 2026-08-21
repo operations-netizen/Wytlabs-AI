@@ -1,0 +1,7 @@
+/* The official wordmark artwork — never filtered, tinted or distorted. */
+.logo {
+  display: block;
+  flex: none;
+  object-fit: contain;
+  user-select: none;
+}
