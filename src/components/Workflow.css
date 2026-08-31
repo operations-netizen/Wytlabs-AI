@@ -18,29 +18,42 @@
   padding-right: 0;
 }
 
-/* Rail segment above each step */
+/* Rail segment above each step.
+
+   One continuous brand-to-signal ramp split across the steps, so each segment
+   picks up exactly where the previous one ended. There are five steps and
+   therefore six stops — the chain previously carried five stops for four
+   segments, left over from when this section had four steps, so step 4 matched
+   no rule and fell back to the grey base, showing as a grey gap in the rail.
+
+   The base colour is the first stop rather than a neutral, so if the step count
+   changes again an unmatched segment degrades to brand blue instead of grey. */
 .flow__bar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--rule-strong);
+  background: var(--brand-700);
 }
 
-.flow__step:first-child .flow__bar {
-  background: linear-gradient(90deg, var(--brand-700), var(--brand-500));
+.flow__step:nth-child(1) .flow__bar {
+  background: linear-gradient(90deg, var(--brand-700), var(--brand-600));
 }
 
 .flow__step:nth-child(2) .flow__bar {
-  background: linear-gradient(90deg, var(--brand-500), var(--brand-400));
+  background: linear-gradient(90deg, var(--brand-600), var(--brand-500));
 }
 
 .flow__step:nth-child(3) .flow__bar {
+  background: linear-gradient(90deg, var(--brand-500), var(--brand-400));
+}
+
+.flow__step:nth-child(4) .flow__bar {
   background: linear-gradient(90deg, var(--brand-400), var(--signal-500));
 }
 
-.flow__step:last-child .flow__bar {
+.flow__step:nth-child(5) .flow__bar {
   background: linear-gradient(90deg, var(--signal-500), var(--signal-200));
 }
 
