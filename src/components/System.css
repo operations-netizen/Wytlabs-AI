@@ -1,0 +1,266 @@
+/* ==========================================================================
+   ALL-IN-ONE SYSTEM
+   --------------------------------------------------------------------------
+   A managed offer, not a fifth plan column — dark ground so it reads as its
+   own proposition against the light pricing table above it.
+   ========================================================================== */
+
+.sys {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--navy-950);
+  padding-block: var(--section);
+}
+
+.sys__mesh {
+  opacity: 0.35;
+}
+
+.sys__aura {
+  width: 48rem;
+  height: 26rem;
+  top: -12rem;
+  right: -14rem;
+  background: rgba(22, 44, 185, 0.4);
+}
+
+.sys__in {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Name and rate ----------------------------------------------------- */
+.sys__head {
+  display: grid;
+  /* Three parts: name, statement, rate. Two poles with short copy at each end
+     left ~690px of the row empty at 1440, so the statement moved up here from
+     its own band — it fills the middle and saves a row of height. */
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 2.6vw, 2.75rem);
+  align-items: center;
+  padding-bottom: clamp(1.5rem, 2.4vw, 2.25rem);
+}
+
+.sys__eyebrow {
+  color: var(--brand-300);
+}
+
+.sys__name {
+  margin: var(--s-4) 0 0;
+  font-size: clamp(1.75rem, 1.9vw + 0.85rem, 2.75rem); /* 28 → 44 */
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-display);
+  line-height: 1.02;
+}
+
+.sys__tag {
+  margin: var(--s-3) 0 0;
+  font-size: var(--t-body);
+  color: var(--text-2);
+  max-width: 42ch;
+}
+
+/* The rate is the commercial anchor, so it gets a panel of its own rather
+   than floating as bare text at the end of the row. */
+.sys__pricecard {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.1rem;
+  padding: clamp(1.15rem, 2vw, 1.65rem) clamp(1.5rem, 2.6vw, 2.25rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-2);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.015) 60%,
+    rgba(91, 120, 245, 0.09)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.sys__amt {
+  /* Explicit: .dark re-points the tokens but does not set `color`, so headings
+     pick up white from the base heading rule while a bare span inherits the
+     body's ink and disappears against this ground. */
+  color: var(--text);
+  font-size: clamp(1.75rem, 1.9vw + 0.85rem, 2.75rem); /* 28 → 44 */
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-display);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sys__per {
+  font-size: var(--t-sm);
+  color: var(--text-2);
+}
+
+/* Matches the tag on the plan table, so one hard rate beside four indicative
+   ones does not read as the only confirmed price on the page. */
+.sys__ind {
+  margin-top: 0.65rem;
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-1);
+  padding: 0.28rem 0.5rem;
+}
+
+/* ---- Summary statement ------------------------------------------------- */
+.sys__sum {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.85rem, 1.6vw, 1.25rem);
+  margin: 0;
+  font-size: var(--t-h4);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tr-head);
+  color: var(--text);
+  max-width: 24ch;
+}
+
+.sys__srule {
+  flex: none;
+  width: 28px;
+  height: 1px;
+  background: var(--grad-signal);
+  transform: translateY(-0.35em);
+}
+
+/* ---- Scope grid -------------------------------------------------------- */
+.sys__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Seams are the background showing through 1px gaps, so no two adjacent
+     cells can ever double a border. */
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-4);
+  overflow: hidden;
+}
+
+.sys__c {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: clamp(1.35rem, 2.1vw, 2rem) clamp(1.15rem, 1.8vw, 1.75rem);
+  background: var(--navy-950);
+  transition: background var(--d-2) var(--ease);
+}
+
+.sys__c:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* An index per cell, the same editorial device the problem and why sections
+   use — it gives the grid a reading order instead of six equal islands. */
+.sys__n {
+  position: absolute;
+  top: clamp(1.35rem, 2.1vw, 2rem);
+  right: clamp(1.15rem, 1.8vw, 1.75rem);
+  font-size: var(--t-label);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-label);
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.16);
+}
+
+/* A tile, like the audience and why sections use. Bare glyphs read as
+   afterthoughts and were the one icon treatment on the page without a frame. */
+.sys__i {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-1);
+  background: rgba(91, 120, 245, 0.14);
+  border: 1px solid rgba(146, 168, 251, 0.22);
+  color: var(--brand-300);
+  margin-bottom: var(--s-3);
+  transition: background var(--d-2) var(--ease), color var(--d-2) var(--ease),
+    transform var(--d-3) var(--ease);
+}
+
+.sys__c:hover .sys__i {
+  background: var(--brand-700);
+  border-color: transparent;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.sys__t {
+  margin: 0;
+  padding-right: 2.25rem; /* clears the index */
+  font-size: clamp(1.0625rem, 0.35vw + 0.98rem, 1.25rem); /* 17 → 20 */
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tr-head);
+  line-height: 1.25;
+}
+
+.sys__b {
+  margin: 0;
+  font-size: var(--t-sm);
+  line-height: var(--lh-loose);
+  color: var(--text-2);
+  max-width: 34ch;
+}
+
+/* ---- Action ------------------------------------------------------------ */
+.sys__act {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 1.75rem);
+  flex-wrap: wrap;
+  margin-top: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 1180px) {
+  /* The statement drops to its own row before the rate does, so the name and
+     the price stay paired for as long as there is room for them. */
+  .sys__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .sys__sum {
+    grid-column: 1 / -1;
+    max-width: none;
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+@media (max-width: 900px) {
+  .sys__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .sys__head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--s-5);
+  }
+
+  /* Full width, and the contents line up with everything else on the page. */
+  .sys__pricecard {
+    justify-items: start;
+    width: 100%;
+  }
+
+  .sys__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sys__act .btn {
+    width: 100%;
+  }
+}

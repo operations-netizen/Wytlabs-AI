@@ -9,6 +9,7 @@ import Workflow from '../components/Workflow';
 import Transform from '../components/Transform';
 import Showcase from '../components/Showcase';
 import Pricing from '../components/Pricing';
+import System from '../components/System';
 import Why from '../components/Why';
 import Audience from '../components/Audience';
 import Faq from '../components/Faq';
@@ -92,6 +93,7 @@ export default function WytlabsAI() {
         <Transform />
         <Showcase />
         <Pricing />
+        <System />
         <Why />
         <Audience />
         <Faq />
